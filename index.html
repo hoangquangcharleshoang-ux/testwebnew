@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script id="patch-fetch">
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var fetchVal = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return fetchVal; },
+            set: function(val) { fetchVal = val; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var originalFetchProto = Window.prototype.fetch;
+            var fetchProtoVal = originalFetchProto || window.fetch;
+            Object.defineProperty(Window.prototype, 'fetch', {
+              get: function() { return fetchProtoVal; },
+              set: function(val) { fetchProtoVal = val; },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (err) {
+            console.warn("Patching fetch failed:", err);
+          }
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

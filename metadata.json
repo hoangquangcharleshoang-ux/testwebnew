@@ -1,0 +1,6 @@
+{
+  "name": "ACUET",
+  "description": "CLB Hàng không Vũ trụ - Trường Đại học Công nghệ - ĐHQGHN",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
